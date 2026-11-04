@@ -1,0 +1,15 @@
+services:
+  opentofu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+    env_file:
+      - ./.env
+    environment:
+      TF_VAR_discord_token: ${DISCORD_TOKEN}
+      TF_VAR_guild_id: ${GUILD_ID}
+    entrypoint: ["tofu"]
+
